@@ -1,0 +1,21 @@
+{
+  "name": "talon-one-demoblaze-cypress",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cypress end-to-end tests for Demoblaze login, signup, laptop purchase and catalog validations.",
+  "scripts": {
+    "precy:run": "rimraf cypress/reports cypress/screenshots cypress/videos",
+    "cy:open": "cypress open",
+    "cy:command": "cypress run",
+    "cy:run": "npm-run-all -c cy:command report:merge report:html",
+    "cy:chrome": "cypress run --browser chrome && npm run report:merge && npm run report:html",
+    "report:merge": "npx mochawesome-merge cypress/reports/.jsons/*.json -o cypress/reports/report.json",
+    "report:html": "npx marge cypress/reports/report.json --reportDir cypress/reports/html --reportFilename index --inline"
+  },
+  "devDependencies": {
+    "cypress": "^14.0.3",
+    "cypress-mochawesome-reporter": "^4.0.2",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^6.1.3"
+  }
+}
